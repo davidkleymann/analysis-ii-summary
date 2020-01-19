@@ -1,7 +1,7 @@
 \section{Differentialgleichungen}
 
 \begin{Definition}{Differentialgleichung}{}
-    Eine \textbf{Differentialgleichung} ist eine Gleichung, in welcher eine unbekannte Funktion $y(x)$ einer oder mehreren Variablen und ihre Ableitung vorkommnt. Im Falle, dass $y$ eine auf dem Intervall $I \subset \R$ definierte Funktion ist \[y: I \subset \R \to \R,\] spricht man von einer \textbf{gewöhnlichen Differentialgleichung}.
+    Eine \textbf{Differentialgleichung} ist eine Gleichung, in welcher eine unbekannte Funktion $y(x)$ einer oder mehreren Variablen und ihre Ableitung vorkommnt. Im Falle, dass $y$ eine auf dem Intervall $I \subset \R$ definierte Funktion ist \[y: I \subset \R \to \R,\] und die Funktion und ihre Ableitungen alle an der selben Stelle x ausgwertet werden, spricht man von einer \textbf{gewöhnlichen Differentialgleichung}.
 \end{Definition}
 
 \begin{Definition}{Ordnung, linear, homogen}{}
@@ -25,6 +25,25 @@
     \]
     
 \end{Satz}
+
+
+\begin{Rezept}{Reduktion der Ordnung}{}
+Reduktion einer ODE mit Ordnung $k$ auf Ordnung 1:
+Man definiere 
+	\begin{equation*}
+	f: \mathbb{R} \rightarrow \mathbb{R}^k \qquad x \longmapsto \begin{pmatrix} y(x) \\ y'(x)\\ \cdots \\ y^{(k)}(x)\end{pmatrix} \qquad
+	f'(x)= \begin{pmatrix} y'(x) \\ y''(x) \\ \cdots \\ \small{\text{original equation solved for $y^{(k)}(m)$}}
+	\end{pmatrix}
+	\end{equation*}
+
+Für $k=3$ und $ \rom{1}: y''' = cy'' + by' + ay$:
+	\begin{equation*}
+	f'(x)= \underbrace{\begin{pmatrix}
+	0 & 1 & 0 \\ 0 & 0 & 1 \\ a & b & c
+	\end{pmatrix}}_{A(x)} \cdot \begin{pmatrix} y(x) \\ y'(x) \\ y''(x) 
+	\end{pmatrix} \qquad \rom{1}': f'(x) = A(x) \cdot f(x)
+	\end{equation*}
+\end{Rezept}
 
 \begin{Rezept}{Separation der Variablen}{}
 	Diese Methode eignet sich für \textbf{Differentialgleichungen erster Ordnung} und ist die einfachste Methode.
@@ -89,18 +108,28 @@
 	\end{enumerate}
 \end{Rezept}
 
-\begin{Rezept}{Euler-Ansatz mit vielfachen/komplexen Nullstellen}{}
-	Richtung: Lösungen der Charakteristischen Gleichung $\lambda_i$ $\to$ Ansatz der \textbf{homogenen} Lösung $y_h$.\\
+\begin{Rezept}{Ersetzen von komplexen Lösungen}{}
+%	Richtung: Lösungen der Charakteristischen Gleichung $\lambda_i$ $\to$ Ansatz der \textbf{homogenen} Lösung $y_h$.\\
 
+    %\begin{tabular}{c|c}
+     %    \textbf{Lösung für $\lambda$} & \textbf{Linearkombinationen für $y_h(x)$}\\
+      %   $\alpha$ & ${\color{green}c_1} \cdot e^{\alpha x}$\\
+       %  $\alpha_1 = \alpha_2 = \ldots = \alpha_k$ & ${\color{green}c_1} \cdot e^{\alpha x} + {%\color{blue} x} \cdot e^{\alpha x} + .. + {\color{green}c_k} \cdot {\color{blue} x^{k-1}} \cdot e^{\alpha x}$\\
+         %$\alpha + \beta i, \; \beta>0$ & ${\color{green}c_1} \cdot e^{\alpha x} \cdot \sin(\beta x)$\\
+         %$\alpha + \beta i, \; \beta<0$ & ${\color{green}c_1} \cdot e^{\alpha x} \cdot \cos(\beta %x)$\\
+         %$\alpha_1 + \beta_1 i = .. = \alpha_k + \beta_k i \;\; \beta>0$ & ${\color{green}c_1}e^{\alpha x} \cdot \sin(\beta x) + .. + {\color{green}c_k}{\color{blue} x^{k-1}} \cdot e^{\alpha x} \cdot \sin(\beta x)$\\
+         %$\alpha_1 + \beta_1 i = .. = \alpha_k + \beta_k i \;\; \beta<0$ & ${\color{green}c_1}e^{\alpha x} \cdot \cos(\beta x) + .. + {\color{green}c_k} {\color{blue} x^{k-1}} \cdot e^{\alpha x} \cdot \cos(\beta x)$\\
+    %\end{tabular}
+    Wenn alle Koeffizienten reel sind und $\alpha = \beta + i\gamma$:\\
     \begin{tabular}{c|c}
-         \textbf{Lösung für $\lambda$} & \textbf{Linearkombinationen für $y_h(x)$}\\
-         $\alpha$ & ${\color{green}c_1} \cdot e^{\alpha x}$\\
-         $\alpha_1 = \alpha_2 = \ldots = \alpha_k$ & ${\color{green}c_1} \cdot e^{\alpha x} + {\color{blue} x} \cdot e^{\alpha x} + .. + {\color{green}c_k} \cdot {\color{blue} x^{k-1}} \cdot e^{\alpha x}$\\
-         $\alpha + \beta i, \; \beta>0$ & ${\color{green}c_1} \cdot e^{\alpha x} \cdot \sin(\beta x)$\\
-         $\alpha + \beta i, \; \beta<0$ & ${\color{green}c_1} \cdot e^{\alpha x} \cdot \cos(\beta x)$\\
-         $\alpha_1 + \beta_1 i = .. = \alpha_k + \beta_k i \;\; \beta>0$ & ${\color{green}c_1}e^{\alpha x} \cdot \sin(\beta x) + .. + {\color{green}c_k}{\color{blue} x^{k-1}} \cdot e^{\alpha x} \cdot \sin(\beta x)$\\
-         $\alpha_1 + \beta_1 i = .. = \alpha_k + \beta_k i \;\; \beta<0$ & ${\color{green}c_1}e^{\alpha x} \cdot \cos(\beta x) + .. + {\color{green}c_k} {\color{blue} x^{k-1}} \cdot e^{\alpha x} \cdot \cos(\beta x)$\\
+    $f_1(x) = e^{\alpha x}$ & $\Tilde{f_1}(x) = e^{\beta x} cos(\gamma x)$\\
+    $f_2(x) = e^{\overline{\alpha} x}$ & $\Tilde{f_2}(x) = e^{\beta x} sin(\gamma x) $\\
     \end{tabular}
+\end{Rezept}
+
+\begin{Rezept}{Mehrfach vorkommende Nullstellen (lineare ODE mit konstanten Koeffizienten)}{}
+$\alpha$ Nullstelle mit Vielfachheit $j$. Dann sind folgende Faktoren Teil der Basis der Lösungen:\\
+$f_{\alpha, 0}(x) = e^{\alpha x}, \qquad f_{\alpha, 1}(x) = xe^{\alpha x}, \qquad \cdots, \qquad  f_{\alpha, j-1}(x) = x^{j-1} e^{\alpha x} $
 \end{Rezept}
 
 \begin{Diverses}{}{}
@@ -115,6 +144,7 @@
 	\[
 	    y(x) = Ae^{2ix} + Be^{-2ix} = \widetilde{A} \sin (2x) + \widetilde{B} \cos (2x)
 	\]
+	\textbf{Trick:} $y' + ay = b_1 + b_2 \Longrightarrow f_0 = f_1 + f_2$
 \end{Diverses}
 
 \begin{Rezept}{Variation der Konstanten (2. Ordnung)}{}

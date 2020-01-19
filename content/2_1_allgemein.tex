@@ -4,3 +4,13 @@
 \textbf{Geschlossen (closed)} Jede Folge $(x_n)$ mit $x_n \in M$ ist $\lim (x_n) \in M$.
 
 \textbf{Kompakt (compact)} Falls beschränkt und geschlossen.
+
+\begin{Definition}{Grenzwert einer Folge in $\mathbb{R}^n$}{}
+Für $k\geq1, x_k=(x_{k,1},\cdots,x_{k,n})$ und $y_0 = (y_{0,1}, \cdots, y_{0,n}) $: \\
+\begin{align*}    
+\boxed{\lim\limits_{k \rightarrow +\infty}{x_k} = y_0} \iff &\forall \epsilon > 0 \, \exists k_0 > 0, \text{if } k \geq k_0, ||x_k - y_0|| < \epsilon\\
+&\text{or } \lim\limits_{k \rightarrow +\infty}{||x_k-y_0||} = 0\\
+&\text{or For } i=1,\cdots, n; \lim\limits_{k \rightarrow +\infty}{x_{k,i}} = y_{0,i}
+\end{align*}
+
+\end{Definition}
