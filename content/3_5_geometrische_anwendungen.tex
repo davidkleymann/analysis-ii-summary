@@ -17,7 +17,7 @@ Sei $\Omega$ eine beschränkte Teilmenge von $\R^2$. $\Omega$ heisst \textbf{y-N
 
 wobei $f$, $g$ stetige Funktionen der Variable $x$ sind. Die Rolle von $x$ und $y$ darf vertauscht werden (es existiert also auch ein $x$-Normalbereich).
 
-\includegraphics[width=.8\textwidth]{images/normalbereich}
+\includegraphics[width=.7\textwidth]{images/normalbereich}
 
 (a): y-Normalbereich, (b): x-Normalbereich
 
@@ -51,6 +51,25 @@ werden abhängig von der äusseren Variable gewählt:
 
 }
 \end{enumerate}
+\end{Rezept}
+
+\begin{Diverses}{Spezialfälle beim Integrieren von linearen Funktionen/Normalbereichen}{}
+Sei $\phi(x) = Ax$ und $A$ invertierbar.\qquad
+$
+    \text{Vol}(A[0,1]^n) &= |\det(A)| \qquad
+    \text{Vol}(rX) &= r^n Vol(X)
+$
+\end{Diverses}
+
+\begin{Rezept}{Uneigentliche Integrale}{}
+Fall 1: $X = [a,b] \cross [c, +\infty[$
+\[
+\int_X f(x,y) \partial x \partial y = \lim_{h \rightarrow \infty} \int_{[a,b] \cross [c, n]} f(x)\partial x \partial y
+\]
+Fall 2: $X=\mathbb{R}^2$ und $f \geq 0$
+\[
+\int \dots = \lim_{n \rightarrow \infty} \int_{[-n,n] \cross [-n,n]} f(x,y) \partial x \partial y =  \lim_{n \rightarrow \infty} \int_{\left(\text{disc of radius $n$}\right)} f(x,y) \partial x \partial y
+\]
 \end{Rezept}
 
 \subsubsection{Satz von Green}
@@ -101,18 +120,21 @@ Idee: Beziehung Linienintegral und Flächenintegral.
 	\]
 \end{Rezept}
 
-\begin{Satz}{Masse und Schwerpunkt}{}
-	Sei $\Omega$ ein zweidimensionales Gebiet mit Massendichte $\rho(x, y)$, welche die Massenverteilung auf $\Omega$ beschreibt. Die \textbf{Masse} von $\Omega$ ist dann	
-	\[
-		M(\Omega) = \int_\Omega \rho(x, y) dx dy
-	\]
-	Der \textbf{Schwerpunkt} $S=(x_s, y_s)$ von $\Omega$ ist gegeben durch
-	\begin{align*}
-		x_s &= \frac{1}{M} \int_\Omega x \rho (x, y) dx dy\\
-		y_s &= \frac{1}{M} \int_\Omega y \rho (x, y) dx dy
-	\end{align*} 
-	Analog berechnen sich Masse, Schwerpunkt von dreidimensionalen Gebieten.
+\begin{Satz}{Oberfläche}{}
+($n=3$) S ist eine "Oberfläche" (kompakt) in $\mathbb{R}^n$. S als Graph für $f: X \rightarrow \mathbb{R}$ ($C^1$): \\
+$S=\{(x,y,z) | (x,y) \in X \subset \mathbb{R}^2, z = f(x,y)\}$
+\[
+\text{Area}(S) = \int_X \sqrt{1+ (\frac{\partial f}{\partial x}(x,y))^2 + (\frac{\partial f}{\partial y}(x,y))^2} \partial x \partial y
+\]
 \end{Satz}
+
+\begin{Satz}{Masseschwerpunkt (center of mass)}{}
+	Masseschwerpunkt $Bar{x} = (Bar{x_1}, \dots, Bar{x_n}) \in \mathbb{R}^n$ ist der Punkt worauf ein $X \subset \mathbb{R}^n$ perfekt balanciert ist. Für die Koordinaten gilt:
+	\[
+	\Bar{x_i} = \frac{1}{\text{Vol}(X)}\int_X x_i \partial_{x_1} \cdots \partial_{x_n}
+	\]
+\end{Satz}
+
 \begin{Satz}{Satz von Stokes}{}
 	Sei $\vec{v} = (v_1, v_2, v_3)$ ein stetig differenzierbares Vektorfeld auf $\Omega \subset \R^3$ und $C \subset \Omega$ eine offene Fläche durch die geschlossene $C^1_{pw}$ Kurve $\gamma = \partial C$ berandet:
 	\[
@@ -132,3 +154,8 @@ Idee: Beziehung Linienintegral und Flächenintegral.
 	\]
 	wobei $\vec n$ der nach aussen gerichtete Normalenvektor entlang $\partial V$, $do$ das zweidimensionale Integrationselement über die Fläche und $d\mu$ das dreidimensionale Integrationselement über das Volumen bezeichnen.
 \end{Satz}
+
+\begin{Definition}{Divergenz}{}
+$\text{div}(f) = \frac{\partial f_1}{\partial x_1} + \cdots + \frac{\partial f_n}{\partial x_n}$ \quad div$(\nabla g) = \Delta g$ \quad $\int_X \Delta g (x,y) \partial x \partial y = \int_{\partial x} \nabla g \partial \Vec{n}$\\
+$\Vec{n} \perp \gamma'(t)$ and $\Vec{n}$ points toward the outside of X
+\end{Definition}

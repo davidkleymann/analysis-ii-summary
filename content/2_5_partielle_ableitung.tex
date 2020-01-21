@@ -25,7 +25,7 @@ $f \in C^2$. Gilt nur für zwei und drei verschiedene Variablen. Beliebige Poten
             \frac{\partial f}{\partial x_1}\\
             \vdots\\
             \frac{\partial f}{\partial x_n}
-        \end{pmatrix}
+        \end{pmatrix} \quad \text{Nur für } f: X \rightarrow \mathbb{R}
 \]
 
 Gradient eines Skalarfeldes: Richtung: Richtung des steilsten Anstiegs; Betrag: Stärke des Anstiegs.\\
@@ -47,7 +47,7 @@ $f$ heisst an der Stelle $a$ in Richtung $u$ differenzierbar, falls der Grenzwer
 		\left.\frac{d}{dh}f(a+hu)\right|_{h = 0}
 		=: D_vf(a)
 	\]
-existiert. Ist $||u|| = 1$ (normiert), heisst dieser Grenzwert Richtungsableitung.
+existiert (oder $g(h) = f(x_0 + hu)$). Ist $||u|| = 1$ (normiert), heisst dieser Grenzwert Richtungsableitung.
 
 \begin{Rezept}{Richtungsableitung $D_uf(a)$ existiert:}{} Falls $t \mapsto f(a + tu)$ differenzierbar ist bei $t=0$, dann existiert $D_uf(a)$.\\
 
@@ -55,12 +55,40 @@ existiert. Ist $||u|| = 1$ (normiert), heisst dieser Grenzwert Richtungsableitun
 \end{Rezept}
 
 \begin{Rezept}{Richtungsableitung $D_u f(a)$}{}
-Falls $f$ in $a$ differenzierbar ist: Für $f$ in Richtung $u$ in Punkt $a$: 1) $u$ normieren: $\tilde{u} = \frac{u}{||u||}$ 2) Gradient $\nabla f(x)$ berechnen, dann:
+Falls $f$ in $a$ differenzierbar ist: Für $f$ in Richtung $u$ in Punkt $a$: 1) $u$ normieren: $\tilde{u} = \frac{u}{\|u\|}$ 2) Gradient $\nabla f(x)$ berechnen, dann:
 
 \[
     D_u f(a) = \tilde{u} \underbrace{\cdot}_{\text{SP.}} \nabla f(a)
 \]
 \end{Rezept}
+\begin{Rezept}{Change of variable}{}
+$g$ drückt jede Variable $x_i$ von $f$ mit neuen Variablen $(y_1, ..., y_n)$ aus.
+\[
+U \subset \mathbb{R}^n \text{ offen } \xrightarrow{g}  V \subset \mathbb{R}^n \text{ offen }
+\]
+Ableitungen:
+\[
+\frac{\partial h (y)}{\partial y_i} = \frac{\partial f(g(y)))}{\partial x_1} \cdot \frac{\partial g_1(y)}{\partial y_i} \cdots \frac{\partial f(g(y))}{\partial x_n} \cdot \frac{\partial g_n(y)}{\partial y_i}
+\]
+In der Notation wird $h$ durch $f$ ersetzt und $g_i$ durch $x_i$.
+\end{Rezept}
+Beispiel Polarkoordinaten:
+\[
+g(\iota, \theta) = (\iota \cos{\theta}, \iota \sin{\theta}) \quad
+J_g(\iota, \theta) = \begin{pmatrix}
+\cos{\theta} & -\iota \sin{\theta} \\ \sin{\theta} & \iota \cos{\theta}
+\end{pmatrix}
+\]
+\[
+J_h = J_f \cdot J_g \Rightarrow \partial_\iota h = \dots, \partial_\theta h = \dots \rightarrow \text{Nach $\partial_x f$ und $\partial_y f$ auflösen}
+\]
+
+\begin{Diverses}{Koordinatentransformationen}{}
+    \textbf{Polarkoordinaten:}
+    $\partial_x f = \cos{\theta} \partial_\iota f - \frac{1}{\iota}\sin{\theta}\partial_\theta f \quad
+    \partial_x f = \cos{\theta} \partial_\iota f - \frac{1}{\iota}\sin{\theta}\partial_\theta f $\\
+    \textbf{Zylinderkoordinaten:} \dots
+\end{Diverses}
 
 \begin{Definition}{Hessematrix}{}
 \[
@@ -91,6 +119,12 @@ Falls $f$ in $a$ differenzierbar ist: Für $f$ in Richtung $u$ in Punkt $a$: 1) 
 Für die Kettenregel von Jakobimatrizen siehe ''generelle Kettenregel''.
 \end{Definition}
 
+\begin{Definition}{Laplace Operator}{}
+\[
+\Delta f = \nabla(\nabla f)) = \sum_{k=1}^{n} \frac{\partial^2 f}{\partial x_k^2} = \text{trace}(\textbf{Hess}(f))
+\]
+\end{Definition}
+
 \subsection{Taylorpolynome}
 
 \[
@@ -119,15 +153,18 @@ Für die Kettenregel von Jakobimatrizen siehe ''generelle Kettenregel''.
 
 \begin{Diverses}{Taylorentwicklungen}{}
     \begin{align*}
-    e^z &= \sum_{k=0}^{\infty} \frac{z^k}{k!} = 1 + z + \frac{z^2}{2}+ \frac{z^3}{3!}+ \frac{z^4}{4!} + \cdots \\
+    e^z &= \sum_{k=0}^{\infty} \frac{z^k}{k!} = 1 + z + \frac{z^2}{2}+ \frac{z^3}{3!}+ \frac{z^4}{4!} + \cdots & 
+    \frac{1}{1 \pm x} &= 1 \mp x + x^2 \mp x^3 + x^4 \mp \cdots\\
+    \frac{1}{(1 \pm x)^2} &= 1 \mp 2x + 3x^2 \mp 4x^3 + 5x^4 \mp \cdots &
+    \sqrt{1 \pm x} &= 1 \pm \frac{x}{2} - \frac{\scriptstyle{1\cdot 1}}{\scriptstyle{2 \cdot 4}}x^2 \pm \frac{\scriptstyle{1\cdot 1 \cdot 3}}{\scriptstyle{2 \cdot 4 \cdot 6}}x^3 - \frac{\scriptstyle{1 \cdot 1 \cdot 3 \cdot 5}}{\scriptstyle{2 \cdot 4 \cdot 6 \cdot 8}}x^4 \pm \scriptstyle\cdots \\
     \sin(\phi) &= \sum_{k=0}^{\infty} (-1)^k \frac{\phi^{2k}}{(2k)!} = \phi - \frac{\phi^3}{3!} + \frac{\phi^5}{5!} + \cdots &
     \sinh(z) &= \sum_{k=0}^{\infty} \frac{z^{2k+1}}{(2k+1)!} = z + \frac{z^3}{3!} + \frac{z^5}{5!} + \cdots\\
     \cos(\phi) &= \sum_{k=0}^{\infty} (-1)^k \frac{\phi^{2k+1}}{(2k+1)!} = 1 - \frac{\phi^2}{2!} + \frac{\phi^4}{4!} + \cdots &
     \cosh(z) &= \sum_{k=0}^{\infty} \frac{z^{2k}}{(2k)!} = 1 + \frac{z^2}{2!} + \frac{z^4}{4!} + \cdots\\
     \tan(\phi) &= \text{...complicated...} = 1 + \frac{\phi^3}{3} + \frac{2\phi^5}{15} + \cdots&
     \tanh(z) &= \text{...complicated...} = 1 \pmb{-} \frac{z^3}{3} \pmb{+} \frac{2z^5}{15} \pmb{-} \cdots\\
-    \ln(1+z) &= \sum_{k=1}^{\infty} \frac{(-1)^{k+1}}{k}z^k = z - \frac{z^2}{2} + \frac{z^3}{3} + \cdots &
-    (1+z)^\alpha& = \sum_{k=0}^{\infty}  \binom{\alpha}{k} z^k = 1 + \alpha z + \frac{\alpha(\alpha - 1)}{2!} z ^ 2 + \cdots
+    \ln(1+z) &= \sum_{k=1}^{\infty} \frac{(-1)^{k+1}}{k}z^k = z - \frac{z^2}{2} + \frac{z^3}{3} + \scriptstyle\cdots &
+    (1+z)^\alpha& = \sum_{k=0}^{\infty}  \binom{\alpha}{k} z^k = 1 + \alpha z + \frac{\alpha(\alpha - 1)}{2!} z ^ 2 + \scriptstyle\cdots
     \end{align*}
 \end{Diverses}
 
@@ -187,4 +224,8 @@ Für die Kettenregel von Jakobimatrizen siehe ''generelle Kettenregel''.
 \textbf{Idee}: Annäherung von $f$ im Punkt $(x_0, y_0)$ durch Taylorpolynom I. Grades
 \[ z = f(x_0, y_0) + \frac{\partial f}{\partial x}(x_0, y_0)\cdot(x-x_0) + \frac{\partial f}{\partial y}(x_0, y_0)\cdot(y-y_0) \]
 kann direkt umgeformt werden in die Normalform der Ebenengleichung.
+Allgemein für diffbare $f: X \rightarrow \mathbb{R}$ auf $x_0 \in \mathbb{R}^n$:
+\begin{equation*}
+    z = f(x_0) + J_f(x_0) \underbrace{\cdot}_{\small{\text{Matrixprod.}}} (x-x_0)
+\end{equation*}
 \end{Rezept}
