@@ -28,18 +28,17 @@ $f \in C^2$. Gilt nur für zwei und drei verschiedene Variablen. Beliebige Poten
         \end{pmatrix}
 \]
 
-Gradient eines Skalarfeldes: Richtung: Richtung des steilten Anstiegs; Betrag: Stärke des Anstiegs.\\
+Gradient eines Skalarfeldes: Richtung: Richtung des steilsten Anstiegs; Betrag: Stärke des Anstiegs.\\
 
 \textbf{Regeln} ($n \in \mathbb{N}$, $c$ konstant, $u, v$ Vektoren):
-$\text{grad}(c) = 0$,
-$\text{grad}(c \cdot u) = c \cdot \text{grad}(u)$ (Linearität),
-$\text{grad}(u + v) = \text{grad}(u) + \text{grad}(u)$ (Addition),
-$\text{grad}(u \cdot v) = \text{grad}(u) \cdot \text{grad}(u)$
-(Produktregel),
-TODO andere gradienten regeln von der übungsstunde 5
-TODO Serie 5 2.1 senkrecht satz 
-$\text{grad}(u^n) = n \cdot u^{n-1} \cdot \text{grad}(u)$ ($n\neq 0$).
-
+\begin{align*}
+    &\text{grad}(c) = 0 &
+    &\text{grad}(c \cdot u) = c \cdot \text{grad}(u) \text{  (Linearität)} \\
+    &\text{grad}(u + v) = \text{grad}(u) + \text{grad}(u) \text{  (Addition)} &
+    &\text{grad}(u \cdot v) = \text{grad}(u) \cdot \text{grad}(u) 
+    \text{  (Produktregel)} \\
+    &\text{grad}(u^n) = n \cdot u^{n-1} \cdot \text{grad}(u) (n\neq 0) 
+\end{align*}
 \subsubsection{Richtungsableitung (Directional Derivative)}
 
 $f$ heisst an der Stelle $a$ in Richtung $u$ differenzierbar, falls der Grenzwert 
@@ -81,7 +80,7 @@ Falls $f$ in $a$ differenzierbar ist: Für $f$ in Richtung $u$ in Punkt $a$: 1) 
             f_1(x, y)\\
             \vdots\\
             f_n(x, y)
-        \end{pmatrix}\ 
+        \end{pmatrix} \quad
     \mathbf{J_f}(x, y) =
         \begin{pmatrix}
                 \frac{\partial f_1}{\partial x} & \frac{\partial f_1}{\partial y}\\
@@ -117,6 +116,20 @@ Für die Kettenregel von Jakobimatrizen siehe ''generelle Kettenregel''.
 \[
     T_2f(x) = f(x_0) + \nabla f(x_0)	 (x-x_0) + \frac{1}{2} (x-x_0)^\top \text{Hess}_f(x_0) (x-x_0) 
 \]
+
+\begin{Diverses}{Taylorentwicklungen}{}
+    \begin{align*}
+    e^z &= \sum_{k=0}^{\infty} \frac{z^k}{k!} = 1 + z + \frac{z^2}{2}+ \frac{z^3}{3!}+ \frac{z^4}{4!} + \cdots \\
+    \sin(\phi) &= \sum_{k=0}^{\infty} (-1)^k \frac{\phi^{2k}}{(2k)!} = \phi - \frac{\phi^3}{3!} + \frac{\phi^5}{5!} + \cdots &
+    \sinh(z) &= \sum_{k=0}^{\infty} \frac{z^{2k+1}}{(2k+1)!} = z + \frac{z^3}{3!} + \frac{z^5}{5!} + \cdots\\
+    \cos(\phi) &= \sum_{k=0}^{\infty} (-1)^k \frac{\phi^{2k+1}}{(2k+1)!} = 1 - \frac{\phi^2}{2!} + \frac{\phi^4}{4!} + \cdots &
+    \cosh(z) &= \sum_{k=0}^{\infty} \frac{z^{2k}}{(2k)!} = 1 + \frac{z^2}{2!} + \frac{z^4}{4!} + \cdots\\
+    \tan(\phi) &= \text{...complicated...} = 1 + \frac{\phi^3}{3} + \frac{2\phi^5}{15} + \cdots&
+    \tanh(z) &= \text{...complicated...} = 1 \pmb{-} \frac{z^3}{3} \pmb{+} \frac{2z^5}{15} \pmb{-} \cdots\\
+    \ln(1+z) &= \sum_{k=1}^{\infty} \frac{(-1)^{k+1}}{k}z^k = z - \frac{z^2}{2} + \frac{z^3}{3} + \cdots &
+    (1+z)^\alpha& = \sum_{k=0}^{\infty}  \binom{\alpha}{k} z^k = 1 + \alpha z + \frac{\alpha(\alpha - 1)}{2!} z ^ 2 + \cdots
+    \end{align*}
+\end{Diverses}
 
 \begin{Rezept}{Tangentialebene (Variante I)}{}
     Tangentialebene der Fläche $f(x, y)$ finden in Punkt $(x_0, y_0)$.
